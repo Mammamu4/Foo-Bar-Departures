@@ -61,6 +61,7 @@ function App() {
         setError("Något gick dåligt, tror det är KMS fel");
       }
     };
+    //hello
     fetchDepartures();
     const intervalId = setInterval(fetchDepartures, updateFrequency);
 
