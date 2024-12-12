@@ -10,7 +10,6 @@ const updateFrequency = 10000; // ms
 function App() {
   const [trains, setTrains] = useState([]);
   const [busses, setBusses] = useState([]);
-  const [departures, setDepartures] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ function App() {
             const response = await axios.get(
               `https://api.resrobot.se/v2.1/departureBoard?id=${id}&format=json&accessId=5cff9b85-0491-4aeb-83a3-cbe5b0bbb757&duration=30`
             );
-            console.log(response.data);
             const departures = response.data.Departure;
             return departures
               .map((departure) => {
@@ -45,41 +43,64 @@ function App() {
               });
           })
         );
+        const newBusses = [];
+        const newTrains = [];
         allResults.flat().forEach((result) => {
           switch (result.name.split(" ")[0]) {
             case "Buss":
-              setBusses((prevBusses) => [...prevBusses, result]);
+              newBusses.push(result);
               break;
             default:
-              setTrains((prevTrains) => [...prevTrains, result]);
+              newTrains.push(result);
           }
         });
-        setDepartures(allResults.flat());
+        setBusses(newBusses);
+        setTrains(newTrains);
       } catch (err) {
         console.error(err);
         setError("Något gick dåligt, tror det är KMS fel");
       }
     };
     fetchDepartures();
-    const intervalId = setInterval(fetchDepartures, 10000);
+    const intervalId = setInterval(fetchDepartures, updateFrequency);
 
     return () => clearInterval(intervalId);
   }, []);
 
-  return (
+  return error ? (
+    <div>Något gick snett, måste vara KMS fel</div>
+  ) : (
     <div className="departures">
-      {departures && departures.length > 0 ? (
-        departures.map((departure, index) => (
-          <Departure
-            key={index}
-            name={departure.name}
-            time={departure.time}
-            direction={departure.direction}
-          />
-        ))
-      ) : (
-        <div>Det verkar inte gå några tåg, bara att börja vandra!</div>
-      )}
+      <div className="busses departureContainer">
+        <h1>Busses</h1>
+        {busses.length > 0 ? (
+          busses.map((buss, index) => (
+            <Departure
+              key={index}
+              name={buss.name}
+              time={buss.time}
+              direction={buss.direction}
+            />
+          ))
+        ) : (
+          <div>Det verkar inte gå några bussar, bruh moment</div>
+        )}
+      </div>
+      <div className="trains departureContainer">
+        <h1>Trains</h1>
+        {trains.length > 0 ? (
+          trains.map((train, index) => (
+            <Departure
+              key={index}
+              name={train.name}
+              time={train.time}
+              direction={train.direction}
+            />
+          ))
+        ) : (
+          <div>Det verkar inte gå några tåg, bruh moment</div>
+        )}
+      </div>
     </div>
   );
 }

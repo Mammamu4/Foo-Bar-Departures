@@ -1,4 +1,13 @@
 .departures {
   display: flex;
+}
+h1 {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+.departureContainer {
+  display: flex;
   flex-direction: column;
+  width: 50%;
 }
