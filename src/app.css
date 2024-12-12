@@ -1,0 +1,4 @@
+.departures {
+  display: flex;
+  flex-direction: column;
+}
