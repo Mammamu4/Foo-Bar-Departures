@@ -44,24 +44,25 @@ table {
 .departure-time-left {
   color: #daa520;
   text-align: end;
-  font-weight: bold;
 }
 .red-text {
-  color: crimson;
+  color: red;
+  font-weight: bold;
 }
 .departure-direction {
 }
 td {
-  font-size: larger;
+  font-size: x-large;
 }
-.clock, .last-updated {
+.clock,
+.last-updated {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   margin-inline: auto;
   width: fit-content;
-  font-size: xx-large;
+  font-size: 40px;
   text-align: center;
 }
 .last-updated {

@@ -105,8 +105,8 @@ function App() {
       // console.log("New Busses:", newBusses);
       // console.log("New Trains:", newTrains);
 
-      setBusses([...newBusses].sort((a, b) => a.timeLeft - b.timeLeft));
-      setTrains([...newTrains].sort((a, b) => a.timeLeft - b.timeLeft));
+      setBusses([...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5));
+      setTrains([...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5));
       setLastUpdated(new Date());
       setError(null);
     } catch (err) {
@@ -136,7 +136,7 @@ function App() {
       </p>
       <h3>Ugla</h3>
       <div className="busses departureContainer">
-        <h1>Busses</h1>
+        <h1>Bussses</h1>
         <Departure departures={busses} />
       </div>
       <div className="trains departureContainer">
