@@ -22,8 +22,8 @@ const Departure = ({ departures }) => {
           <th></th>
           <th className="departure.name">Type</th>
           <th className="departure-time">Time</th>
-          <th className="departure-time-left">Time Left</th>
           <th className="departure-direction">Direction</th>
+          <th className="departure-time-left">Time Left</th>
         </tr>
       </thead>
       <tbody>
@@ -42,8 +42,8 @@ const Departure = ({ departures }) => {
                 {type} {num}
               </td>
               <td className="departure-time">{departure.time}</td>
-              <td className="departure-time-left">{departure.timeLeft} min</td>
               <td className="departure-direction">{departure.direction}</td>
+              <td className={`departure-time-left ${departure.timeLeft <= 10 && "red-text"}`}>{departure.timeLeft} min</td>
             </tr>
           );
         })}

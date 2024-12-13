@@ -42,9 +42,13 @@ table {
 }
 .departure-time-left {
   color: #daa520;
+  text-align: end;
+  font-weight: bold;
+}
+.red-text {
+  color: crimson;
 }
 .departure-direction {
-  text-align: end;
 }
 td {
   font-size: larger;
