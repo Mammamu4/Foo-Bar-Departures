@@ -5,6 +5,37 @@
   padding: 10px;
   background-color: #222222;
 }
+td,
+th {
+  padding: 10px;
+}
+
+td {
+  text-align: center;
+}
+tr {
+  background-color: #141414;
+  padding: 20px;
+}
+.cols {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+.cols > th {
+  padding: 0;
+  font-size: large;
+  font-weight: bold;
+}
+table {
+  border-spacing: 0 15px;
+  border: solid, 2px, white;
+  border-radius: 5px;
+  border-collapse: separate;
+  gap: 0;
+  padding: 20px;
+}
+
 .departure-name {
 }
 .departure-time {
@@ -13,9 +44,9 @@
   color: #daa520;
 }
 .departure-direction {
+  text-align: end;
 }
-p {
-  font-weight: bold;
+td {
   font-size: larger;
 }
 .clock {

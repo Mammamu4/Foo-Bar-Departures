@@ -19,9 +19,15 @@ h3 {
   flex-direction: column;
   width: 50%;
 }
+.busses {
+  padding-right: 10px;
+}
+.trains {
+  padding-left: 10px;
+}
 .jahopp {
   text-align: center;
 }
-.col{
+.col {
   flex: 1;
 }

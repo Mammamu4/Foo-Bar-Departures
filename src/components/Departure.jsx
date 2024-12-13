@@ -10,19 +10,45 @@ const iconMap = {
   Tunnelbana: tunnelbanaIcon,
 };
 
-const Departure = ({ name, time, timeLeft, direction }) => {
-  const nameSplit = name.split(" ");
-  const icon = iconMap[nameSplit[0]] || pendelIcon;
-  const num = nameSplit[1];
+const Departure = ({ departures }) => {
+  if (!departures || departures.length === 0) {
+    return <div className="jahopp">Inga tåg avgår för tillfället</div>;
+  }
 
   return (
-    <div className="departure">
-      <img src={icon} width={48} alt={`${nameSplit[0]} icon`} />
-      <p className="departure-name">{nameSplit[1]}</p>
-      <p className="departure-time">{time}</p>
-      <p className="departure-time-left">{timeLeft} min</p>
-      <p className="departure-direction">{direction}</p>
-    </div>
+    <table>
+      <thead>
+        <tr className="cols">
+          <th></th>
+          <th className="departure.name">Type</th>
+          <th className="departure-time">Time</th>
+          <th className="departure-time-left">Time Left</th>
+          <th className="departure-direction">Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        {departures.map((departure, index) => {
+          const nameSplit = departure.name.split(" ");
+          const icon = iconMap[nameSplit[0]] || pendelIcon;
+          const type = nameSplit[0];
+          const num = nameSplit[1];
+
+          return (
+            <tr key={`departure-${index}`}>
+              <td>
+                <img src={icon} alt={`${type} icon`} width={48} />
+              </td>
+              <td className="departure-name">
+                {type} {num}
+              </td>
+              <td className="departure-time">{departure.time}</td>
+              <td className="departure-time-left">{departure.timeLeft} min</td>
+              <td className="departure-direction">{departure.direction}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 

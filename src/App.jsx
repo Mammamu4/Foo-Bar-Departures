@@ -127,51 +127,15 @@ function App() {
 
   return (
     <div className="departures">
+      <Clock />
       <h3>Ugla</h3>
       <div className="busses departureContainer">
         <h1>Bussar</h1>
-        <header>
-          <div className="col">Buss</div>
-          <div className="col">Time</div>
-          <div className="col">Departure</div>
-          <div className="col">Direction</div>
-        </header>
-        <Clock />
-        {busses.length > 0 ? (
-          busses.map((buss, index) => (
-            <Departure
-              key={`bus-${index}`}
-              name={buss.name}
-              timeLeft={buss.timeLeft}
-              time={buss.time}
-              direction={buss.direction}
-            />
-          ))
-        ) : (
-          <div className="jahopp">Inga bussar avgår för tillfället</div>
-        )}
+        <Departure departures={busses} />
       </div>
       <div className="trains departureContainer">
         <h1>Tåg</h1>
-        <header>
-          <div className="col">Tåg</div>
-          <div className="col">Time</div>
-          <div className="col">Departure</div>
-          <div className="col">Direction</div>
-        </header>
-        {trains.length > 0 ? (
-          trains.map((train, index) => (
-            <Departure
-              key={`train-${index}`}
-              name={train.name}
-              time={train.time}
-              timeLeft={train.timeLeft}
-              direction={train.direction}
-            />
-          ))
-        ) : (
-          <div className="jahopp">Inga tåg avgår för tillfället</div>
-        )}
+        <Departure departures={trains} />
       </div>
     </div>
   );
