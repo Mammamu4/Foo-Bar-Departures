@@ -8,10 +8,11 @@
 td,
 th {
   padding: 10px;
+  text-align: left;
 }
 
 td {
-  text-align: center;
+  text-align: left;
 }
 tr {
   background-color: #141414;
@@ -23,7 +24,7 @@ tr {
   margin: 0;
 }
 .cols > th {
-  padding: 0;
+  padding: 0px 10px;
   font-size: large;
   font-weight: bold;
 }
@@ -33,7 +34,7 @@ table {
   border-radius: 5px;
   border-collapse: separate;
   gap: 0;
-  padding: 20px;
+  padding: 0px 20px;
 }
 
 .departure-name {
@@ -53,7 +54,7 @@ table {
 td {
   font-size: larger;
 }
-.clock {
+.clock, .last-updated {
   position: absolute;
   left: 0;
   right: 0;
@@ -62,4 +63,8 @@ td {
   width: fit-content;
   font-size: xx-large;
   text-align: center;
+}
+.last-updated {
+  top: 30px;
+  font-size: 10px;
 }

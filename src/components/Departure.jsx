@@ -3,7 +3,7 @@ import "./departure.css";
 import pendelIcon from "../assets/svg/pendel.svg";
 import bussIcon from "../assets/svg/buss.svg";
 import tunnelbanaIcon from "../assets/svg/tunnelbana.svg";
-
+import razor from "../assets/Razor.png";
 const iconMap = {
   Pendel: pendelIcon,
   Buss: bussIcon,
@@ -19,8 +19,8 @@ const Departure = ({ departures }) => {
     <table>
       <thead>
         <tr className="cols">
-          <th></th>
-          <th className="departure.name">Type</th>
+          <th><img src={razor} width={40} alt="" /></th>
+          <th className="departure.name">Line</th>
           <th className="departure-time">Time</th>
           <th className="departure-direction">Direction</th>
           <th className="departure-time-left">Time Left</th>
@@ -39,7 +39,7 @@ const Departure = ({ departures }) => {
                 <img src={icon} alt={`${type} icon`} width={48} />
               </td>
               <td className="departure-name">
-                {type} {num}
+                {num}
               </td>
               <td className="departure-time">{departure.time}</td>
               <td className="departure-direction">{departure.direction}</td>

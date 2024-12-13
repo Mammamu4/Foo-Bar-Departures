@@ -21,6 +21,7 @@ function App() {
   const [trains, setTrains] = useState([]);
   const [busses, setBusses] = useState([]);
   const [error, setError] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   const fetchDepartures = async () => {
     if (!VITE_RESROBOT_ACCESS_ID) {
@@ -106,7 +107,7 @@ function App() {
 
       setBusses([...newBusses].sort((a, b) => a.timeLeft - b.timeLeft));
       setTrains([...newTrains].sort((a, b) => a.timeLeft - b.timeLeft));
-
+      setLastUpdated(new Date());
       setError(null);
     } catch (err) {
       console.error("Comprehensive fetch error:", err);
@@ -128,13 +129,18 @@ function App() {
   return (
     <div className="departures">
       <Clock />
+      <p className="last-updated">
+        {lastUpdated
+          ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
+          : "Fetching data..."}
+      </p>
       <h3>Ugla</h3>
       <div className="busses departureContainer">
-        <h1>Bussar</h1>
+        <h1>Busses</h1>
         <Departure departures={busses} />
       </div>
       <div className="trains departureContainer">
-        <h1>Tåg</h1>
+        <h1>Trains</h1>
         <Departure departures={trains} />
       </div>
     </div>
