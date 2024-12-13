@@ -31,3 +31,10 @@ h3 {
 .col {
   flex: 1;
 }
+.kungstrad {
+  font-size: 80px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  color: orange
+}

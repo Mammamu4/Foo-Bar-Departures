@@ -1,13 +1,12 @@
 .departure {
   margin: 10px 5px 10px 5px;
-  border-radius: 10px;
   display: flex;
   padding: 10px;
   background-color: #222222;
 }
 td,
 th {
-  padding: 10px;
+  padding: 0px 10px;
   text-align: left;
 }
 
@@ -16,6 +15,7 @@ td {
 }
 tr {
   background-color: #141414;
+  border-radius: 20px;
   padding: 20px;
 }
 .cols {
@@ -25,13 +25,12 @@ tr {
 }
 .cols > th {
   padding: 0px 10px;
-  font-size: large;
+  font-size: 25px;
   font-weight: bold;
 }
 table {
   border-spacing: 0 15px;
   border: solid, 2px, white;
-  border-radius: 5px;
   border-collapse: separate;
   gap: 0;
   padding: 0px 20px;
@@ -40,19 +39,22 @@ table {
 .departure-name {
 }
 .departure-time {
+  color: orange;
 }
 .departure-time-left {
-  color: #daa520;
   text-align: end;
+  color: orange;
+}
+td {
+  font-size: 35px;
+  align-items: center;
+}
+.departure-direction {
+  color: white;
 }
 .red-text {
   color: red;
   font-weight: bold;
-}
-.departure-direction {
-}
-td {
-  font-size: x-large;
 }
 .clock,
 .last-updated {

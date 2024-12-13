@@ -22,6 +22,7 @@ function App() {
   const [busses, setBusses] = useState([]);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
+  const [kungstrad, setKungstrad] = useState(null);
 
   const fetchDepartures = async () => {
     if (!VITE_RESROBOT_ACCESS_ID) {
@@ -30,20 +31,14 @@ function App() {
     }
 
     try {
-      //console.log("Stations to fetch:", stations);
-
       const allResults = await Promise.all(
         stations.map(async (id) => {
           try {
-            // console.log(`Fetching departures for station: ${id}`);
             const response = await axios.get(
               `${VITE_RESROBOT_API_BASE_URL}?id=${id}&format=json&accessId=${VITE_RESROBOT_ACCESS_ID}&duration=${VITE_API_DURATION}`
             );
 
-            // console.log(`Raw response for station ${id}:`, response.data);
-
             const departures = response.data.Departure || [];
-            // console.log(`Departures for station ${id}:`, departures);
 
             const processedDepartures = departures
               .map((departure) => {
@@ -72,10 +67,6 @@ function App() {
                   departure.direction != "Akalla T-bana"
               );
 
-            // console.log(
-            //   `Processed departures for station ${id}:`,
-            //   processedDepartures
-            // );
             return processedDepartures;
           } catch (stationError) {
             console.error(
@@ -87,12 +78,15 @@ function App() {
         })
       );
 
-      // console.log("All Results:", allResults);
-
       const newBusses = [];
       const newTrains = [];
+      let firstKungstrad = null;
 
       allResults.flat().forEach((result) => {
+        if (!firstKungstrad && result.direction === "Kungsträdgården T-bana") {
+          firstKungstrad = result;
+        }
+
         switch (result.name.split(" ")[0]) {
           case "Buss":
             newBusses.push(result);
@@ -102,11 +96,14 @@ function App() {
         }
       });
 
-      // console.log("New Busses:", newBusses);
-      // console.log("New Trains:", newTrains);
+      setBusses(
+        [...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 10)
+      );
+      setTrains(
+        [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 10)
+      );
 
-      setBusses([...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5));
-      setTrains([...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5));
+      setKungstrad(firstKungstrad); // Update the state with the first "Kungsträdgården T-bana" departure
       setLastUpdated(new Date());
       setError(null);
     } catch (err) {
@@ -127,23 +124,35 @@ function App() {
   }
 
   return (
-    <div className="departures">
-      <Clock />
-      <p className="last-updated">
-        {lastUpdated
-          ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
-          : "Fetching data..."}
-      </p>
-      <h3>Ugla</h3>
-      <div className="busses departureContainer">
-        <h1>Bussses</h1>
-        <Departure departures={busses} />
+    <>
+      <div className="departures">
+        <Clock />
+        <p className="last-updated">
+          {lastUpdated
+            ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
+            : "Fetching data..."}
+        </p>
+        <h3>Ugla</h3>
+        <div className="busses departureContainer">
+          <h1>Bussses</h1>
+          <Departure departures={busses} />
+        </div>
+        <div className="trains departureContainer">
+          <h1>Trains</h1>
+          <Departure departures={trains} />
+        </div>
       </div>
-      <div className="trains departureContainer">
-        <h1>Trains</h1>
-        <Departure departures={trains} />
+      <div className="kungstrad">
+        {kungstrad ? (
+          <p>
+            {kungstrad.direction.split(" ")[0] + " "} 
+            {kungstrad.time} ({kungstrad.timeLeft} mins)
+          </p>
+        ) : (
+          <p>No departures to Kungsträdgården T-bana found</p>
+        )}
       </div>
-    </div>
+    </>
   );
 }
 

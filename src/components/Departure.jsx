@@ -42,7 +42,7 @@ const Departure = ({ departures }) => {
                 {num}
               </td>
               <td className="departure-time">{departure.time}</td>
-              <td className="departure-direction">{departure.direction}</td>
+              <td className="departure-direction">{departure.direction.split(" ")[0]}</td>
               <td className={`departure-time-left ${departure.timeLeft <= 10 && "red-text"}`}>{departure.timeLeft} min</td>
             </tr>
           );
