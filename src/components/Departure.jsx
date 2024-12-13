@@ -19,8 +19,8 @@ const Departure = ({ departures }) => {
     <table>
       <thead>
         <tr className="cols">
-          <th><img src={razor} width={40} alt="" /></th>
-          <th className="departure.name">Line</th>
+          <th className="departure-icon"><img src={razor} width={40} alt="" /></th>
+          <th className="departure-name">Line</th>
           <th className="departure-time">Time</th>
           <th className="departure-direction">Direction</th>
           <th className="departure-time-left">Time Left</th>
@@ -34,8 +34,8 @@ const Departure = ({ departures }) => {
           const num = nameSplit[1];
 
           return (
-            <tr key={`departure-${index}`}>
-              <td>
+            <tr key={`departure-${index}`} className={index % 2 != 0 && "odd"}>
+              <td className="departure-icon">
                 <img src={icon} alt={`${type} icon`} width={48} />
               </td>
               <td className="departure-name">

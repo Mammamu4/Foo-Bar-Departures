@@ -1,8 +1,10 @@
 .departures {
   display: flex;
+  flex-direction: column;
 }
 h1 {
-  text-align: center;
+  text-align: left;
+  color:orange;
   margin: 0;
   padding: 0;
 }
@@ -10,31 +12,19 @@ h3 {
   position: absolute;
   color: rgba(255, 255, 255, 0.2);
   top: 0;
-  left: 0;
+  right: 0;
   padding: 0;
   margin: 0;
 }
 .departureContainer {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 }
-.busses {
-  padding-right: 10px;
-}
-.trains {
-  padding-left: 10px;
-}
+
 .jahopp {
   text-align: center;
 }
 .col {
   flex: 1;
-}
-.kungstrad {
-  font-size: 80px;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-  color: orange
 }

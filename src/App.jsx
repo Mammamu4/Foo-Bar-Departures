@@ -22,7 +22,6 @@ function App() {
   const [busses, setBusses] = useState([]);
   const [error, setError] = useState(null);
   const [lastUpdated, setLastUpdated] = useState(null);
-  const [kungstrad, setKungstrad] = useState(null);
 
   const fetchDepartures = async () => {
     if (!VITE_RESROBOT_ACCESS_ID) {
@@ -97,13 +96,12 @@ function App() {
       });
 
       setBusses(
-        [...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 10)
+        [...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5)
       );
       setTrains(
-        [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 10)
+        [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5)
       );
 
-      setKungstrad(firstKungstrad); // Update the state with the first "Kungsträdgården T-bana" departure
       setLastUpdated(new Date());
       setError(null);
     } catch (err) {
@@ -141,16 +139,6 @@ function App() {
           <h1>Trains</h1>
           <Departure departures={trains} />
         </div>
-      </div>
-      <div className="kungstrad">
-        {kungstrad ? (
-          <p>
-            {kungstrad.direction.split(" ")[0] + " "} 
-            {kungstrad.time} ({kungstrad.timeLeft} mins)
-          </p>
-        ) : (
-          <p>No departures to Kungsträdgården T-bana found</p>
-        )}
       </div>
     </>
   );
