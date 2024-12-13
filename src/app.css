@@ -6,6 +6,14 @@ h1 {
   margin: 0;
   padding: 0;
 }
+h3 {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.2);
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
 .departureContainer {
   display: flex;
   flex-direction: column;
@@ -13,4 +21,7 @@ h1 {
 }
 .jahopp {
   text-align: center;
+}
+.col{
+  flex: 1;
 }

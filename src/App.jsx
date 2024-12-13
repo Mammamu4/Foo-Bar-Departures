@@ -3,15 +3,15 @@ import axios from "axios";
 import Departure from "./components/Departure";
 import data from "./assets/departures.json";
 import Clock from "./components/Clock.jsx";
-import { formatTimeDifference } from "./util.js";
+import { formatTimeDifference, removeParentheses } from "./util.js";
 import "./app.css";
 
 // Environment configuration
 const {
-  VITE_RESROBOT_API_BASE_URL = "https://api.resrobot.se/v2.1/departureBoard",
+  VITE_RESROBOT_API_BASE_URL,
   VITE_RESROBOT_ACCESS_ID,
-  VITE_UPDATE_FREQUENCY = "10000",
-  VITE_API_DURATION = "30"
+  VITE_UPDATE_FREQUENCY,
+  VITE_API_DURATION,
 } = import.meta.env;
 
 const { allowedDepartures, stations } = data;
@@ -29,23 +29,27 @@ function App() {
     }
 
     try {
-      console.log("Stations to fetch:", stations);
+      //console.log("Stations to fetch:", stations);
 
       const allResults = await Promise.all(
         stations.map(async (id) => {
           try {
-            console.log(`Fetching departures for station: ${id}`);
+            // console.log(`Fetching departures for station: ${id}`);
             const response = await axios.get(
               `${VITE_RESROBOT_API_BASE_URL}?id=${id}&format=json&accessId=${VITE_RESROBOT_ACCESS_ID}&duration=${VITE_API_DURATION}`
             );
-            
-            console.log(`Raw response for station ${id}:`, response.data);
-            
+
+            // console.log(`Raw response for station ${id}:`, response.data);
+
             const departures = response.data.Departure || [];
-            console.log(`Departures for station ${id}:`, departures);
+            // console.log(`Departures for station ${id}:`, departures);
 
             const processedDepartures = departures
               .map((departure) => {
+                const timeWithoutSeconds = departure.time
+                  .split(":")
+                  .slice(0, 2)
+                  .join(":");
                 const transportName = departure.name.match(
                   /\b(Buss|Tunnelbana|Tåg)\s*\d+\b/i
                 );
@@ -53,28 +57,36 @@ function App() {
 
                 return {
                   name: transportName ? transportName[0] : "Unknown",
-                  time: departure.time,
+                  time: timeWithoutSeconds,
                   timeLeft: timeDifference,
-                  direction: departure.direction,
+                  direction: removeParentheses(departure.direction),
                 };
               })
-              .filter((departure) => 
-                departure.time !== "Departed" &&
-                departure.name !== "Unknown" &&
-                allowedDepartures.includes(departure.name)
+              .filter(
+                (departure) =>
+                  departure.time !== "Departed" &&
+                  departure.name !== "Unknown" &&
+                  departure.timeLeft >= 5 &&
+                  allowedDepartures.includes(departure.name) &&
+                  departure.direction != "Akalla T-bana"
               );
 
-            console.log(`Processed departures for station ${id}:`, processedDepartures);
-            
+            // console.log(
+            //   `Processed departures for station ${id}:`,
+            //   processedDepartures
+            // );
             return processedDepartures;
           } catch (stationError) {
-            console.error(`Error fetching departures for station ${id}:`, stationError);
+            console.error(
+              `Error fetching departures for station ${id}:`,
+              stationError
+            );
             return [];
           }
         })
       );
 
-      console.log("All Results:", allResults);
+      // console.log("All Results:", allResults);
 
       const newBusses = [];
       const newTrains = [];
@@ -89,11 +101,12 @@ function App() {
         }
       });
 
-      console.log("New Busses:", newBusses);
-      console.log("New Trains:", newTrains);
+      // console.log("New Busses:", newBusses);
+      // console.log("New Trains:", newTrains);
 
-      setBusses(newBusses);
-      setTrains(newTrains);
+      setBusses([...newBusses].sort((a, b) => a.timeLeft - b.timeLeft));
+      setTrains([...newTrains].sort((a, b) => a.timeLeft - b.timeLeft));
+
       setError(null);
     } catch (err) {
       console.error("Comprehensive fetch error:", err);
@@ -114,16 +127,23 @@ function App() {
 
   return (
     <div className="departures">
+      <h3>Ugla</h3>
       <div className="busses departureContainer">
         <h1>Bussar</h1>
+        <header>
+          <div className="col">Buss</div>
+          <div className="col">Time</div>
+          <div className="col">Departure</div>
+          <div className="col">Direction</div>
+        </header>
         <Clock />
         {busses.length > 0 ? (
           busses.map((buss, index) => (
             <Departure
               key={`bus-${index}`}
               name={buss.name}
-              time={buss.time}
               timeLeft={buss.timeLeft}
+              time={buss.time}
               direction={buss.direction}
             />
           ))
@@ -133,6 +153,12 @@ function App() {
       </div>
       <div className="trains departureContainer">
         <h1>Tåg</h1>
+        <header>
+          <div className="col">Tåg</div>
+          <div className="col">Time</div>
+          <div className="col">Departure</div>
+          <div className="col">Direction</div>
+        </header>
         {trains.length > 0 ? (
           trains.map((train, index) => (
             <Departure

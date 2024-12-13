@@ -2,9 +2,21 @@
   margin: 10px 5px 10px 5px;
   border-radius: 10px;
   display: flex;
-  justify-content: space-evenly;
   padding: 10px;
   background-color: #222222;
+}
+.departure-name {
+}
+.departure-time {
+}
+.departure-time-left {
+  color: #daa520;
+}
+.departure-direction {
+}
+p {
+  font-weight: bold;
+  font-size: larger;
 }
 .clock {
   position: absolute;

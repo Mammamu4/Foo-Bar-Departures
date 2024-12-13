@@ -1,10 +1,15 @@
 export const formatTimeDifference = (departureTime) => {
   const now = new Date();
-  const [hours, minutes] = departureTime.split(':').map(Number);
-  
-  const departureDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
-  
-  // If the calculated time is earlier than now, it means it's for the next day
+  const [hours, minutes] = departureTime.split(":").map(Number);
+
+  const departureDate = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    hours,
+    minutes
+  );
+
   if (departureDate < now) {
     departureDate.setDate(departureDate.getDate() + 1);
   }
@@ -17,5 +22,8 @@ export const formatTimeDifference = (departureTime) => {
 
   const differenceInMin = Math.floor(differenceInMs / 1000 / 60);
 
-  return `${differenceInMin} min`;
+  return differenceInMin;
+};
+export const removeParentheses = (input) => {
+  return input.replace(/\s*\(.*?\)/g, "");
 };
