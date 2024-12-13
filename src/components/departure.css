@@ -1,9 +1,3 @@
-.departure {
-  margin: 10px 5px 10px 5px;
-  display: flex;
-  padding: 10px;
-  background-color: #222222;
-}
 td,
 th {
   padding: 0px 10px;
@@ -15,27 +9,40 @@ td {
 }
 tr {
   background-color: #141414;
-  border-radius: 20px;
-  padding: 20px;
+  border-radius: 100px;
 }
 .cols {
   background: transparent;
   padding: 0;
   margin: 0;
-}
-.cols > th {
-  padding: 0px 10px;
   font-size: 25px;
   font-weight: bold;
 }
 table {
-  border-spacing: 0 15px;
+  border-spacing: 0px 5px;
+  border-radius: 5px;
   border: solid, 2px, white;
   border-collapse: separate;
   gap: 0;
-  padding: 0px 20px;
+  padding: 0px 20px 20px 20px;
 }
-
+.odd {
+  background-color: #0a0a0a;
+}
+th.departure-time {
+}
+th.departure-direction {
+}
+th.departure-name {
+}
+th.departure-icon{
+}
+td.departure-icon {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .departure-name {
 }
 .departure-time {
@@ -46,7 +53,7 @@ table {
   color: orange;
 }
 td {
-  font-size: 35px;
+  font-size: 45px;
   align-items: center;
 }
 .departure-direction {
@@ -59,7 +66,6 @@ td {
 .clock,
 .last-updated {
   position: absolute;
-  left: 0;
   right: 0;
   top: 0;
   margin-inline: auto;
@@ -67,7 +73,11 @@ td {
   font-size: 40px;
   text-align: center;
 }
+.clock{
+  left:0;
+}
 .last-updated {
-  top: 30px;
-  font-size: 10px;
+  top: 0;
+  right: 0;
+  font-size: 20px;
 }
