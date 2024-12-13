@@ -4,5 +4,15 @@
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
-  background-color:#222222;
+  background-color: #222222;
+}
+.clock {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-inline: auto;
+  width: fit-content;
+  font-size: xx-large;
+  text-align: center;
 }

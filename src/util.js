@@ -1,8 +1,14 @@
 export const formatTimeDifference = (departureTime) => {
   const now = new Date();
-  const currentDate = now.toISOString().split("T")[0];
-  const fullDepartureTime = `${currentDate}T${departureTime}`;
-  const departureDate = new Date(fullDepartureTime);
+  const [hours, minutes] = departureTime.split(':').map(Number);
+  
+  const departureDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes);
+  
+  // If the calculated time is earlier than now, it means it's for the next day
+  if (departureDate < now) {
+    departureDate.setDate(departureDate.getDate() + 1);
+  }
+
   const differenceInMs = departureDate - now;
 
   if (differenceInMs < 0) {
