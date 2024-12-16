@@ -1,47 +1,66 @@
-td,
-th {
-  padding: 0px 10px;
-  text-align: left;
+.table-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
-td {
-  text-align: left;
-}
-tr {
-  background-color: #141414;
-  border-radius: 100px;
-}
-.cols {
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  font-size: 25px;
-  font-weight: bold;
-}
 table {
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
   border-spacing: 0px 5px;
   border-radius: 5px;
   border: solid, 2px, white;
   border-collapse: separate;
-  gap: 0;
-  padding: 0px 20px 20px 20px;
+}
+
+tr {
+  height: 20%;
+  background-color: #141414;
+}
+.cols {
+  background: transparent;
 }
 .odd {
   background-color: #0a0a0a;
 }
+th, td {
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 4.5vh;
+  padding: 0px 20px;
+}
+img {
+  height: 5vh;
+  width: auto;
+}
+.clock,
+.last-updated {
+  height: 8vh;
+  font-size: 6vh;
+  text-align: center;
+}
+.clock{
+}
+
 th.departure-time {
+  width: 15%;
 }
 th.departure-direction {
 }
 th.departure-name {
+  width: 15%;
 }
 th.departure-icon{
+  width: 10%;
 }
-td.departure-icon {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+td.departure-icon img {
+  height: 4vh;
+  width: auto;
 }
 .departure-name {
 }
@@ -52,32 +71,10 @@ td.departure-icon {
   text-align: end;
   color: orange;
 }
-td {
-  font-size: 45px;
-  align-items: center;
-}
+
 .departure-direction {
   color: white;
 }
 .red-text {
   color: red;
-  font-weight: bold;
-}
-.clock,
-.last-updated {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-inline: auto;
-  width: fit-content;
-  font-size: 40px;
-  text-align: center;
-}
-.clock{
-  left:0;
-}
-.last-updated {
-  top: 0;
-  right: 0;
-  font-size: 20px;
 }
