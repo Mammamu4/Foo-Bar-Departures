@@ -122,25 +122,21 @@ function App() {
   }
 
   return (
-    <>
-      <div className="departures">
-        <Clock />
-        <p className="last-updated">
-          {lastUpdated
-            ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
-            : "Fetching data..."}
-        </p>
-        <h3>Ugla</h3>
-        <div className="busses departureContainer">
-          <h1>Bussses</h1>
-          <Departure departures={busses} />
-        </div>
-        <div className="trains departureContainer">
-          <h1>Trains</h1>
-          <Departure departures={trains} />
-        </div>
+    <div className="departures">
+      <Clock />
+      {/* <p className="last-updated">
+        {lastUpdated
+          ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
+          : "Fetching data..."}
+      </p> */}
+      <div className="buses departureContainer">
+        <Departure departures={busses} />
       </div>
-    </>
+      <div className="trains departureContainer">
+        <Departure departures={trains} />
+      </div>
+      <p>Ugla</p>
+    </div>
   );
 }
 
