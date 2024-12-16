@@ -1,4 +1,3 @@
-import React from "react";
 import pendelIcon from "../assets/svg/pendel.svg";
 import bussIcon from "../assets/svg/buss.svg";
 import tunnelbanaIcon from "../assets/svg/tunnelbana.svg";
@@ -11,9 +10,7 @@ const iconMap = {
 };
 
 const Departure = ({ departures }) => {
-  // if (!departures || departures.length === 0) {
-  //   return <div className="jahopp">Inga tåg avgår för tillfället</div>;
-  // }
+
 
   const minRows = 5;
   const placeholderRows = Math.max(minRows - departures.length, 0);
