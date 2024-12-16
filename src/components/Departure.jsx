@@ -32,16 +32,17 @@ const Departure = ({ departures }) => {
       <tbody>
         {departures.map((departure, index) => {
           const nameSplit = departure.name.split(" ");
-          const icon = iconMap[nameSplit[0]] || pendelIcon;
+          const lineType = nameSplit[0];
+          console.log(lineType)
+          const icon = iconMap[lineType] || pendelIcon
           const type = nameSplit[0];
           const num = nameSplit[1];
-
           return (
             <tr key={`departure-${index}`} className={index % 2 !== 0 ? "odd" : ""}>
               <td className="departure-icon">
                 <img src={icon} alt={`${type} icon`}  />
               </td>
-              <td className="departure-name">{num}</td>
+              <td className="departure-name"><span className={lineType}>{num}</span></td>
               <td className="departure-time">{departure.time}</td>
               <td className="departure-direction">{departure.direction.split(" ")[0]}</td>
               <td className={`departure-time-left ${departure.timeLeft <= 10 ? "red-text" : ""}`}>
