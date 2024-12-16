@@ -30,7 +30,6 @@ const Departure = ({ departures }) => {
         {departures.map((departure, index) => {
           const nameSplit = departure.name.split(" ");
           const lineType = nameSplit[0];
-          console.log(lineType)
           const icon = iconMap[lineType] || pendelIcon
           const type = nameSplit[0];
           const num = nameSplit[1];

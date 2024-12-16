@@ -1,4 +1,4 @@
 {
-  "allowedDepartures": ["Buss 179", "Tunnelbana 11", "Tåg 41", "Buss 178", "Bus 514", "Buss 197"],
+  "allowedDepartures": ["Buss 179", "Tunnelbana 11", "Tåg 41", "Buss 178", "Bus 514", "Buss 197", "Buss 612", "Buss 685", "Buss 687"],
   "stations": [740012883, 740000701]
 }

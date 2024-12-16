@@ -38,7 +38,6 @@ function App() {
             );
 
             const departures = response.data.Departure || [];
-
             const processedDepartures = departures
               .map((departure) => {
                 const timeWithoutSeconds = departure.time
@@ -61,7 +60,7 @@ function App() {
                 (departure) =>
                   departure.time !== "Departed" &&
                   departure.name !== "Unknown" &&
-                  departure.timeLeft > 5 &&
+                  departure.timeLeft > 6 &&
                   allowedDepartures.includes(departure.name) &&
                   departure.direction != "Akalla T-bana"
               );
