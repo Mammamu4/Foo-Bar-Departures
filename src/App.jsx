@@ -61,7 +61,7 @@ function App() {
                 (departure) =>
                   departure.time !== "Departed" &&
                   departure.name !== "Unknown" &&
-                  departure.timeLeft >= 5 &&
+                  departure.timeLeft > 5 &&
                   allowedDepartures.includes(departure.name) &&
                   departure.direction != "Akalla T-bana"
               );

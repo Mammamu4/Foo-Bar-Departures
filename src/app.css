@@ -4,6 +4,7 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   padding: 0;
 }
 .buses, .trains {
@@ -30,6 +31,7 @@ h3 {
 }
 p {
   position: absolute;
+  margin: 0;
   right: 0;
   top: 0;
   color: #2f2f2f;

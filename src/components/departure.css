@@ -25,7 +25,8 @@ tr {
 .odd {
   background-color: #0a0a0a;
 }
-th, td {
+th,
+td {
   text-align: left;
   vertical-align: middle;
   white-space: nowrap;
@@ -40,11 +41,11 @@ img {
 }
 .clock,
 .last-updated {
-  height: 8vh;
-  font-size: 6vh;
+  height: 7vh;
+  font-size: 5vh;
   text-align: center;
 }
-.clock{
+.clock {
 }
 
 th.departure-time {
@@ -55,14 +56,28 @@ th.departure-direction {
 th.departure-name {
   width: 15%;
 }
-th.departure-icon{
+th.departure-icon {
   width: 10%;
 }
 td.departure-icon img {
-  height: 4vh;
-  width: auto;
+  height: 6vh;
+  display: flex;
 }
-.departure-name {
+td.departure-name {
+}
+td.departure-name span {
+  border-radius: 15px;
+  padding: 0px 1.5vh;
+  font-weight: bold;
+}
+.Tåg {
+  background-color: #ec619f;
+}
+.Tunnelbana {
+  background-color: #008dd0;
+}
+.Buss {
+  background-color: black;
 }
 .departure-time {
   color: orange;
@@ -77,4 +92,5 @@ td.departure-icon img {
 }
 .red-text {
   color: red;
+  font-weight: bold;
 }
