@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Departure from "./components/Departure";
+
+import Departure from "./components/Departure/Departure.jsx";
 import data from "./assets/departures.json";
-import Clock from "./components/Clock.jsx";
+import Clock from "./components/Clock/Clock.jsx";
+
 import { formatTimeDifference, removeParentheses } from "./util.js";
+
 import "./app.css";
 
-// Environment configuration
 const {
   VITE_RESROBOT_API_BASE_URL,
   VITE_RESROBOT_ACCESS_ID,
@@ -105,7 +107,7 @@ function App() {
       setError(null);
     } catch (err) {
       console.error("Comprehensive fetch error:", err);
-      setError("Något gick fel vid hämtning av avgångar");
+      setError("Något gick fel vid hämtning av avgångar, måste vara KMS fel!");
     }
   };
 
@@ -122,19 +124,21 @@ function App() {
 
   return (
     <div className="departures">
-      <Clock />
-      {/* <p className="last-updated">
-        {lastUpdated
-          ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
-          : "Fetching data..."}
-      </p> */}
+      <div className="header">
+        <Clock />
+        <p className="last-updated">
+          {lastUpdated
+            ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
+            : "Fetching data..."}
+        </p>
+        <p className="ugla">Ugla</p>
+      </div>
       <div className="buses departureContainer">
         <Departure departures={busses} />
       </div>
       <div className="trains departureContainer">
         <Departure departures={trains} />
       </div>
-      <p>Ugla</p>
     </div>
   );
 }

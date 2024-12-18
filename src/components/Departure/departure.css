@@ -32,15 +32,6 @@ img {
   height: 5vh;
   width: auto;
 }
-.clock,
-.last-updated {
-  height: 7vh;
-  font-size: 5vh;
-  text-align: center;
-}
-.clock {
-}
-
 th.departure-time {
   width: 15%;
 }
