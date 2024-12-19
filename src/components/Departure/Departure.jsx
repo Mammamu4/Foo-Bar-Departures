@@ -18,6 +18,7 @@ const Departure = ({ departures }) => {
           <th className="departure-icon"></th>
           <th className="departure-name">Line</th>
           <th className="departure-time">Time</th>
+          <th className="departure-station">Station</th>
           <th className="departure-direction">Direction</th>
           <th className="departure-time-left">Time Left</th>
         </tr>
@@ -42,6 +43,7 @@ const Departure = ({ departures }) => {
                 <span className={lineType}>{num}</span>
               </td>
               <td className="departure-time">{departure.time}</td>
+              <td className="departure-station">{departure.station}</td>
               <td className="departure-direction">
                 {departure.direction.split(" ")[0]}
               </td>
@@ -70,6 +72,9 @@ const Departure = ({ departures }) => {
                 <img src={razor} width={40} alt="" />
               </td>
               <td className="departure-time">
+                <img src={razor} width={40} alt="" />
+              </td>
+              <td className="departure-station">
                 <img src={razor} width={40} alt="" />
               </td>
               <td className="departure-direction">
