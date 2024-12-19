@@ -1,4 +1,9 @@
 {
-  "allowedDepartures": [],
-  "stations": []
+  "stations": [
+    {
+      "name": "station name",
+      "id": 123456789,
+      "allowedDepartures": ["Buss 10", "Tåg 10", "Tunnelbana 10"]
+    }
+  ]
 }

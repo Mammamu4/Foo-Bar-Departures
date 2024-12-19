@@ -33,15 +33,15 @@ img {
   width: auto;
 }
 th.departure-time {
-  width: 15%;
+  width: 10%;
 }
 th.departure-direction {
 }
 th.departure-name {
-  width: 15%;
+  width: 10%;
 }
 th.departure-icon {
-  width: 10%;
+  width: 5%;
 }
 td.departure-icon img {
   height: 6vh;

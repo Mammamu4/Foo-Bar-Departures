@@ -16,7 +16,7 @@ const {
   VITE_API_DURATION,
 } = import.meta.env;
 
-const { allowedDepartures, stations } = data;
+const { stations } = data;
 const updateFrequency = parseInt(VITE_UPDATE_FREQUENCY, 10);
 
 function App() {
@@ -30,16 +30,19 @@ function App() {
       setError("API access ID is missing");
       return;
     }
-
     try {
       const allResults = await Promise.all(
-        stations.map(async (id) => {
+        stations.map(async (station) => {
           try {
+            const stationName = station.name;
+            const id = station.id;
+            const allowedDepartures = station.allowedDepartures;
             const response = await axios.get(
               `${VITE_RESROBOT_API_BASE_URL}?id=${id}&format=json&accessId=${VITE_RESROBOT_ACCESS_ID}&duration=${VITE_API_DURATION}`
             );
 
             const departures = response.data.Departure || [];
+            console.log(departures)
             const processedDepartures = departures
               .map((departure) => {
                 const timeWithoutSeconds = departure.time
@@ -56,6 +59,7 @@ function App() {
                   time: timeWithoutSeconds,
                   timeLeft: timeDifference,
                   direction: removeParentheses(departure.direction),
+                  station: stationName,
                 };
               })
               .filter(
