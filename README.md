@@ -25,7 +25,7 @@ To run the app locally, follow these steps:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/stockholm-transport-schedule.git
+   git clone https://github.com/Mammamu4/Foo-Bar-Departures.git
    cd stockholm-transport-schedule
 
 2. Install dependencies:
