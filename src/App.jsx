@@ -23,7 +23,6 @@ function App() {
   const [trains, setTrains] = useState([]);
   const [busses, setBusses] = useState([]);
   const [error, setError] = useState(null);
-  const [lastUpdated, setLastUpdated] = useState(null);
 
   const fetchDepartures = async () => {
     if (!VITE_RESROBOT_ACCESS_ID) {
@@ -50,7 +49,7 @@ function App() {
                   .slice(0, 2)
                   .join(":");
                 const transportName = departure.name.match(
-                  /\b(Buss|Tunnelbana|Tåg)\s*\d+\b/i
+                  /\b(Buss|Tunnelbana|Tåg|Spårväg)\s*\d+\b/i
                 );
                 const timeDifference = formatTimeDifference(departure.time);
 
@@ -66,7 +65,7 @@ function App() {
                 (departure) =>
                   departure.time !== "Departed" &&
                   departure.name !== "Unknown" &&
-                  departure.timeLeft > 6 &&
+                  departure.timeLeft > 7 &&
                   allowedDepartures.includes(departure.name) &&
                   departure.direction != "Akalla T-bana"
               );
@@ -107,7 +106,6 @@ function App() {
         [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5)
       );
 
-      setLastUpdated(new Date());
       setError(null);
     } catch (err) {
       console.error("Comprehensive fetch error:", err);
@@ -130,11 +128,7 @@ function App() {
     <div className="departures">
       <div className="header">
         <Clock />
-        <p className="last-updated">
-          {lastUpdated
-            ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
-            : "Fetching data..."}
-        </p>
+        <p className="last-updated">Lovisa <span>♥</span> Fredrik</p>
         <p className="ugla">Ugla</p>
       </div>
       <div className="buses departureContainer">

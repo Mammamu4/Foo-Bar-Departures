@@ -58,7 +58,10 @@ td.departure-name span {
   background-color: #ec619f;
 }
 .Tunnelbana {
-  background-color: #008dd0;
+  background-color: #148541;
+}
+.Spårväg {
+  background-color: #b65f1f;
 }
 .Buss {
   background-color: black;

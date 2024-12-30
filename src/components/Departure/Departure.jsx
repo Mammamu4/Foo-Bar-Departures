@@ -2,6 +2,7 @@ import "./departure.css";
 
 const iconMap = {
   Tåg: "svg/pendel.svg",
+  Spårväg: "svg/pendel.svg",
   Buss: "svg/buss.svg",
   Tunnelbana: "svg/tunnelbana.svg",
 };
@@ -65,24 +66,12 @@ const Departure = ({ departures }) => {
               key={`placeholder-${index}`}
               className={adjustedIndex % 2 !== 0 ? "odd" : ""}
             >
-              <td className="departure-icon">
-                <img src={razor} width={40} alt="" />
-              </td>
-              <td className="departure-name">
-                <img src={razor} width={40} alt="" />
-              </td>
-              <td className="departure-time">
-                <img src={razor} width={40} alt="" />
-              </td>
-              <td className="departure-station">
-                <img src={razor} width={40} alt="" />
-              </td>
-              <td className="departure-direction">
-                <img src={razor} width={40} alt="" />
-              </td>
-              <td className="departure-time-left">
-                <img src={razor} width={40} alt="" />
-              </td>
+              <td className="departure-icon">-</td>
+              <td className="departure-name">-</td>
+              <td className="departure-time">-</td>
+              <td className="departure-station">-</td>
+              <td className="departure-direction">-</td>
+              <td className="departure-time-left">-</td>
             </tr>
           );
         })}

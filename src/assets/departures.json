@@ -1,9 +1,14 @@
 {
   "stations": [
     {
-      "name": "station name",
-      "id": 123456789,
-      "allowedDepartures": ["Buss 10", "Tåg 10", "Tunnelbana 10"]
+      "name": "Gullmarsplan",
+      "id": 740021705,
+      "allowedDepartures": ["Buss 4", "Tunnelbana 17", "Tunnelbana 18", "Tunnelbana 19", "Buss 188"]
+    },
+    {
+      "name": "Mårtensdal",
+      "id": 740024928,
+      "allowedDepartures": ["Spårväg 30"]
     }
   ]
-}
+} 
