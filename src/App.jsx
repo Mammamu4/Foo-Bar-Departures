@@ -42,7 +42,7 @@ function App() {
             );
 
             const departures = response.data.Departure || [];
-            console.log(departures)
+            console.log(departures);
             const processedDepartures = departures
               .map((departure) => {
                 const timeWithoutSeconds = departure.time
@@ -50,7 +50,7 @@ function App() {
                   .slice(0, 2)
                   .join(":");
                 const transportName = departure.name.match(
-                  /\b(Buss|Tunnelbana|Tåg)\s*\d+\b/i
+                  /\b(Buss|Tunnelbana|Tåg|Spårväg)\s*\d+\b/i
                 );
                 const timeDifference = formatTimeDifference(departure.time);
 
@@ -66,7 +66,7 @@ function App() {
                 (departure) =>
                   departure.time !== "Departed" &&
                   departure.name !== "Unknown" &&
-                  departure.timeLeft > 6 &&
+                  departure.timeLeft > 8 &&
                   allowedDepartures.includes(departure.name) &&
                   departure.direction != "Akalla T-bana"
               );
@@ -74,7 +74,7 @@ function App() {
             return processedDepartures;
           } catch (stationError) {
             console.error(
-              `Error fetching departures for station ${id}:`,
+              `Error fetching departures for station ${station.id}}:`,
               stationError
             );
             return [];
@@ -84,13 +84,8 @@ function App() {
 
       const newBusses = [];
       const newTrains = [];
-      let firstKungstrad = null;
 
       allResults.flat().forEach((result) => {
-        if (!firstKungstrad && result.direction === "Kungsträdgården T-bana") {
-          firstKungstrad = result;
-        }
-
         switch (result.name.split(" ")[0]) {
           case "Buss":
             newBusses.push(result);
@@ -101,10 +96,10 @@ function App() {
       });
 
       setBusses(
-        [...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5)
+        [...newBusses].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 3)
       );
       setTrains(
-        [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 5)
+        [...newTrains].sort((a, b) => a.timeLeft - b.timeLeft).slice(0, 3)
       );
 
       setLastUpdated(new Date());
@@ -128,15 +123,6 @@ function App() {
 
   return (
     <div className="departures">
-      <div className="header">
-        <Clock />
-        <p className="last-updated">
-          {lastUpdated
-            ? `Last Updated: ${lastUpdated.toLocaleTimeString()}`
-            : "Fetching data..."}
-        </p>
-        <p className="ugla">Ugla</p>
-      </div>
       <div className="buses departureContainer">
         <Departure departures={busses} />
       </div>
